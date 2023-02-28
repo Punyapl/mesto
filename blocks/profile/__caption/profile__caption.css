@@ -1,0 +1,11 @@
+.profile__caption{
+    color: #FFF;
+    grid-area: caption;
+    margin: 0;
+    height: 18px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+}

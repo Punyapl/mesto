@@ -1,0 +1,14 @@
+.profile__info{
+    height: 73px;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: 39px 18px;
+    grid-template-areas:
+    "name edit"
+    "caption caption";
+    row-gap: 16px;
+    column-gap: 18px;
+    align-items: flex-end;
+    margin-right: 244px;
+    margin-left: 31px;
+}
