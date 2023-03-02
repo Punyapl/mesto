@@ -1,0 +1,17 @@
+.popup__line{
+    max-width: 358px;
+    width: 100%;
+    height: 0px;
+
+    opacity: 0.2;
+    border: 1px solid #000000;
+    margin-left: 36px;
+    margin-bottom: 30px;
+}
+
+@media screen and (max-width:530px){
+    .popup__line{
+        max-width: 238px;
+        margin-left: 22px;
+    }
+}

@@ -1,0 +1,29 @@
+.popup__savebut{
+    padding: 0;
+    margin-top: 15px;
+
+    margin-left: 36px;
+    width: 358px;
+    height: 50px;
+    background: #000000;
+    border-radius: 2px;
+
+    color: white;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+}
+
+@media screen and (max-width:530px){
+    .popup__savebut{
+        margin-top: 15px;
+        margin-left: 22px;
+        width: 238px;
+        height: 46px;
+        font-size: 14px;
+        line-height: 17px;
+    }
+}
