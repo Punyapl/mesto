@@ -19,10 +19,10 @@
                 <img src="./images/profile__avatar.png" alt="profile avatar" class="profile__avatar">
                 <div class="profile__info">
                     <div class="profile__naming">
-                        <h1 class="profile__name">Жак-Ив Кусто</h1>
-                        <button class="profile__edit"><img src="./images/profile__edit.svg" alt="Edit" class="profile__editico"></button>
+                        <h1 class="profile__name profile__name_output">Жак-Ив Кусто</h1>
+                        <button class="profile__edit" type="button"><img src="./images/profile__edit.svg" alt="Edit" class="profile__editico"></button>
                     </div>
-                    <h2 class="profile__caption">Исследователь океана</h2>
+                    <h2 class="profile__caption profile__caption_output">Исследователь океана</h2>
                     
                 </div>
                 <button class="profile__add"><img src="./images/profile__add.svg" alt="Add"></button>
@@ -75,22 +75,25 @@
         <footer class="footer">
             <h3 class="footer__text">© 2020 Mesto Russia</h3>
         </footer>
-        <section class="popup popup_opened">
-            <button class="popup__close"><img src="./images/popup__close.svg" alt="Закрыть" class="popup__closepic"></button>
+        <section class="popup ">
+            <button class="popup__close popup__closebtn" type="button"><img src="./images/popup__close.svg" alt="Закрыть" class="popup__closepic"></button>
             <div class="popup__container">
-                <h2 class="popup__title">Редактировать профиль</h2>
+                <form class="popup__form">
+                    <h2 class="popup__title">Редактировать профиль</h2>
                 <div class="popup__field">
-                    <h3 class="popup__input">...</h3>
+                    <input class="popup__input popup__input_name" type="text" value="Жак-Ив Кусто" name="popup___name"></input>
                     <div class="popup__line"></div>
                 </div>
                 <div class="popup__field">
-                    <h3 class="popup__input">...</h3>
+                    <input class="popup__input popup__input_job" type="text" value="Исследователь океана" name="popup___name"></input>
                     <div class="popup__line"></div>
                 </div>
-                <button class="popup__savebut">Сохранить</button>
+                <button class="popup__savebut popup__btn_save" type="submit">Сохранить</button>
+            </form>
+                
             </div>
         </section>
     </div>
-    
+    <script src="index.js"></script>
 </body>
 </html>
