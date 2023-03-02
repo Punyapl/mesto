@@ -2,7 +2,7 @@
     color: #FFF;
     grid-area: caption;
     margin: 0;
-    height: 18px;
+    min-height: 18px;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;

@@ -1,7 +1,7 @@
 .profile__info{
-    height: 73px;
+    /* min-height: 73px; */
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: minmax(min-content, max-content) auto;
     grid-template-rows: 39px 18px;
     grid-template-areas:
     "name edit"

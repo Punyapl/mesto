@@ -2,7 +2,8 @@
     color: #FFF;
     grid-area: name;
     margin: 0;
-    height: 39px;
+    /* max-height: 48px; */
+    min-height: 39px;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 500;
