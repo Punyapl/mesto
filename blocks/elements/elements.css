@@ -10,3 +10,9 @@
     max-width: 880px;
     justify-content: center;
 }
+
+@media screen and (max-width: 880px){
+    .elements{
+        margin-top: 36px;
+    }
+}
