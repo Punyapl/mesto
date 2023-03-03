@@ -2,6 +2,11 @@
     background: transparent;
     border: none;
     height: 19px;
-    width: 22px;
+    width: 24px;
     padding: 0;
+    background-image: url(../../../images/elements__like.svg);
+}
+
+.elements__likebut:hover{
+    opacity: 0.5;
 }
