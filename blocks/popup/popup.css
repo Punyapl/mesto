@@ -1,16 +1,22 @@
-.popup{
-    display: none;
+.popup{  
     position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     top: 0px;
     left: 0px;
     background-color: rgba(0, 0, 0, 0.5);
     height: 100vh;
     width: 100vw;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-150%);
+    transition:visibility 0.2s, transform 0.5s, opacity 0.2s ease-in-out;
 }
 
 .popup_opened{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
 }
 

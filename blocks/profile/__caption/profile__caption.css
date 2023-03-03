@@ -9,6 +9,11 @@
     font-size: 18px;
     line-height: 22px;
     margin-top: 16px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    min-width: 10px;
+    max-width: 293px;
 }
 
 @media screen and (max-width: 880px){

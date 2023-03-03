@@ -17,6 +17,10 @@
     text-align: center;
 }
 
+.popup__savebut:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+
 @media screen and (max-width:530px){
     .popup__savebut{
         margin-top: 15px;

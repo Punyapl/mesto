@@ -2,7 +2,7 @@
     color: #FFF;
     grid-area: name;
     margin: 0;
-    max-height: 39px;
+    max-height: 50px;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 500;
@@ -13,11 +13,15 @@
     overflow: hidden;
     max-width: 400px;
     min-width: 293px;
+    transform: translate(0px, 10px);
 }
 
 @media screen and (max-width: 880px){
     .profile__name{
-        max-height:26px;
+        max-height:50px;
+        transform: translate(0px, 5px);
+        min-width: 20px;
+        max-width: 239px;
         font-size: 27px;
         line-height: 33px;
         text-align: center;
