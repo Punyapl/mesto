@@ -1,7 +1,9 @@
 .popup__input{
-    width: 358px;
-    height: 27px;
+    max-width: 358px;
+    width: 100%;
 
+    padding-top: 3px;
+    padding-bottom: 4px;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;

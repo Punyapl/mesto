@@ -7,7 +7,7 @@ const nameOutput = document.querySelector('.profile__name');
 const jobOutput = document.querySelector('.profile__caption');
 const profileSaveBtn = document.querySelector('.popup__savebut_svbtn');
 const popup = document.querySelector('.popup');
-console.log(popup)
+
 const profileEditExit = document.querySelector(".popup__closebtn")
 const profileEditBtn = document.querySelector(".profile__edit")
 
@@ -18,13 +18,11 @@ function handleFormSubmit (evt) {
     evt.preventDefault(); 
     nameOutput.textContent = nameInput.value;
     jobOutput.textContent = jobInput.value;
-    console.log("done!")
     PopupClose()
 }
 
 function PopupClose(){
     popup.classList.remove('popup_opened');
-    console.log("closed")
 }
 
 function PopupOpen(){

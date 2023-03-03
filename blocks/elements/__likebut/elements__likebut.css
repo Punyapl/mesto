@@ -1,4 +1,5 @@
 .elements__likebut{
+    cursor: pointer;
     background: transparent;
     border: none;
     height: 19px;

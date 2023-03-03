@@ -2,8 +2,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 246px;
-    height: 70px;
+    padding-right: 20px;
+    padding-top: 20px;
     margin-left: 21px;
     
 }
