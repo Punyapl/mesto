@@ -6,17 +6,22 @@ const nameOutput = document.querySelector('.profile__name');
 const jobOutput = document.querySelector('.profile__caption');
 const nameInputCard = document.querySelector('.popup__input_card-name');
 const linkInputCard = document.querySelector('.popup__input_card-link');
+const zoomPic = document.querySelector('.popup-zoom__img');
+const zoomText = document.querySelector('.popup-zoom__title')
 
 const profileSaveBtn = document.querySelector('.popup__savebut_svbtn');
 const popup = document.querySelector('.popup');
 const popupEdit = document.querySelector('.popup-edit');
 const popupAdd = document.querySelector('.popup-add');
+const popupZoom = document.querySelector('.popup-zoom');
 
 const profileEditExit = document.querySelector(".popup__closebtn-edit");
 const profileEditBtn = document.querySelector(".profile__edit");
 
 const cardAddBtn = document.querySelector(".profile__add");
 const cardAddExit = document.querySelector(".popup__closebtn-add");
+
+const zoomExitBtn = document.querySelector(".popup-zoom__close");
 
 const cardTemplate = document.querySelector("#card").content;
 const cardElement = cardTemplate.querySelector(".elements__element");
@@ -65,6 +70,15 @@ function AddPopupOpen(){
     popupAdd.classList.add('popup_opened');
 }
 
+function ZoomPopupClose(){
+    popupZoom.classList.remove('popup_opened');
+}
+
+function ZoomPopupOpen(){
+    popupZoom.classList.add('popup_opened');
+}
+
+
 function handleProfileFormSubmit (evt) {
     evt.preventDefault(); 
     nameOutput.textContent = nameInput.value;
@@ -90,9 +104,14 @@ function createNewCard(name,link){
     const likeBtn = cardClone.querySelector(".elements__likebut");
 
     deleteBtn.addEventListener("click", () => cardClone.remove());
-    likeBtn.addEventListener("click", () =>
-    likeBtn.classList.toggle("elements__likebut_active")
-  );
+    likeBtn.addEventListener("click", () => likeBtn.classList.toggle("elements__likebut_active"));
+    cardPic.addEventListener("click", (evt) =>{
+        ZoomPopupOpen();
+        zoomPic.src = evt.target.src;
+        zoomPic.alt = evt.target.alt;
+        zoomText.textContent = evt.target.alt;
+    });
+  
 
     cardPic.src = link;
     cardPic.alt = name;
@@ -114,6 +133,7 @@ profileEditExit.addEventListener('click', EditPopupClose);
 profileEditBtn.addEventListener('click', EditPopupOpen);
 cardAddBtn.addEventListener('click', AddPopupOpen);
 cardAddExit.addEventListener('click', AddPopupClose);
+zoomExitBtn.addEventListener('click', ZoomPopupClose);
 
 
 editFormElement.addEventListener('submit', handleProfileFormSubmit); 

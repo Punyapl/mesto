@@ -10,12 +10,10 @@
     width: 100vw;
     visibility: hidden;
     opacity: 0;
-    transform: translateY(-150%);
-    transition:visibility 0.2s, transform 0.5s, opacity 0.2s ease-in-out;
+    transition:visibility 0.2s, opacity 0.2s ease-in-out;
 }
 
 .popup_opened{
-    transform: translateY(0);
     opacity: 1;
     visibility: visible;
 }

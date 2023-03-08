@@ -4,7 +4,7 @@
     align-items:flex-end;
 }
 
-@media screen and (max-width: 880px){
+@media screen and (max-width: 996px){
     .profile__naming{
         transform: translate(10px);
     }
