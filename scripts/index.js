@@ -10,7 +10,6 @@ const zoomPic = document.querySelector('.popup-zoom__img');
 const zoomText = document.querySelector('.popup-zoom__title')
 
 const profileSaveBtn = document.querySelector('.popup__savebut_svbtn');
-const popup = document.querySelector('.popup');
 const popupEdit = document.querySelector('.popup-edit');
 const popupAdd = document.querySelector('.popup-add');
 const popupZoom = document.querySelector('.popup-zoom');
@@ -54,28 +53,36 @@ const initialCards = [
     }
   ];
 
-function EditPopupClose(){
-    popupEdit.classList.remove('popup_opened');
+function openPopup(popup){
+  popup.classList.add('popup_opened');
 }
 
-function EditPopupOpen(){
-    popupEdit.classList.add('popup_opened');
+function closePopup(popup){
+  popup.classList.remove('popup_opened');
 }
 
-function AddPopupClose(){
-    popupAdd.classList.remove('popup_opened');
+function closeEditPopup(){
+  closePopup(popupEdit);
 }
 
-function AddPopupOpen(){
-    popupAdd.classList.add('popup_opened');
+function openEditPopup(){
+  openPopup(popupEdit);
 }
 
-function ZoomPopupClose(){
-    popupZoom.classList.remove('popup_opened');
+function closeAddPopup(){
+  closePopup(popupAdd);
 }
 
-function ZoomPopupOpen(){
-    popupZoom.classList.add('popup_opened');
+function openAddPopup(){
+  openPopup(popupAdd);
+}
+
+function closeZoomPopup(){
+  closePopup(popupZoom);
+}
+
+function openZoomPopup(){
+  openPopup(popupZoom);
 }
 
 
@@ -83,57 +90,56 @@ function handleProfileFormSubmit (evt) {
     evt.preventDefault(); 
     nameOutput.textContent = nameInput.value;
     jobOutput.textContent = jobInput.value;
-    EditPopupClose()
+    closeEditPopup()
 }
 
 function handleAddFormSubmit(evt){
-    evt.preventDefault(); 
-    const cardName = nameInputCard.value;
-    const cardLink = linkInputCard.value;
-    createNewCard(cardName, cardLink);
-    renderCard(cardName, cardLink)
-    evt.target.reset();
-    AddPopupClose()
+  evt.preventDefault(); 
+  const cardName = nameInputCard.value;
+  const cardLink = linkInputCard.value;
+  renderCard(cardName, cardLink)
+  evt.target.reset();
+  closeAddPopup()
 }
 
 function createNewCard(name,link){
-    const cardClone = cardElement.cloneNode(true);
-    const cardPic = cardClone.querySelector(".elements__image");
-    const cardText = cardClone.querySelector(".elements__text");
-    const deleteBtn = cardClone.querySelector(".elements__dlt-btn");
-    const likeBtn = cardClone.querySelector(".elements__likebut");
+  const cardClone = cardElement.cloneNode(true);
+  const cardPic = cardClone.querySelector(".elements__image");
+  const cardText = cardClone.querySelector(".elements__text");
+  const deleteBtn = cardClone.querySelector(".elements__dlt-btn");
+  const likeBtn = cardClone.querySelector(".elements__likebut");
 
-    deleteBtn.addEventListener("click", () => cardClone.remove());
-    likeBtn.addEventListener("click", () => likeBtn.classList.toggle("elements__likebut_active"));
-    cardPic.addEventListener("click", (evt) =>{
-        ZoomPopupOpen();
-        zoomPic.src = evt.target.src;
-        zoomPic.alt = evt.target.alt;
-        zoomText.textContent = evt.target.alt;
-    });
-  
+  deleteBtn.addEventListener("click", () => cardClone.remove());
+  likeBtn.addEventListener("click", () => likeBtn.classList.toggle("elements__likebut_active"));
+  cardPic.addEventListener("click", (evt) =>{
+      openZoomPopup();
+      zoomPic.src = evt.target.src;
+      zoomPic.alt = evt.target.alt;
+      zoomText.textContent = evt.target.alt;
+  });
 
-    cardPic.src = link;
-    cardPic.alt = name;
-    cardText.textContent = name;
 
-    return cardClone;
+  cardPic.src = link;
+  cardPic.alt = name;
+  cardText.textContent = name;
+
+  return cardClone;
 }
 
 function renderCard(name,link){
-    const newCard = createNewCard(name,link);
-    cardsContainer.prepend(newCard);
+  const newCard = createNewCard(name,link);
+  cardsContainer.prepend(newCard);
 }
 
 initialCards.forEach((card) => {
-    renderCard(card.name, card.link);
-  });
+  renderCard(card.name, card.link);
+});
 
-profileEditExit.addEventListener('click', EditPopupClose);
-profileEditBtn.addEventListener('click', EditPopupOpen);
-cardAddBtn.addEventListener('click', AddPopupOpen);
-cardAddExit.addEventListener('click', AddPopupClose);
-zoomExitBtn.addEventListener('click', ZoomPopupClose);
+profileEditExit.addEventListener('click', closeEditPopup);
+profileEditBtn.addEventListener('click', openEditPopup);
+cardAddBtn.addEventListener('click', openAddPopup);
+cardAddExit.addEventListener('click', closeAddPopup);
+zoomExitBtn.addEventListener('click', closeZoomPopup);
 
 
 editFormElement.addEventListener('submit', handleProfileFormSubmit); 
