@@ -27,74 +27,74 @@ const cardElement = cardTemplate.querySelector(".elements__element");
 const cardsContainer = document.querySelector('.elements');
 
 const initialCards = [
-    {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-  ];
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
 
-function openPopup(popup){
+function openPopup(popup) {
   popup.classList.add('popup_opened');
 }
 
-function closePopup(popup){
+function closePopup(popup) {
   popup.classList.remove('popup_opened');
 }
 
-function closeEditPopup(){
+function closeEditPopup() {
   closePopup(popupEdit);
 }
 
-function openEditPopup(){
+function openEditPopup() {
   openPopup(popupEdit);
 }
 
-function closeAddPopup(){
+function closeAddPopup() {
   closePopup(popupAdd);
 }
 
-function openAddPopup(){
+function openAddPopup() {
   openPopup(popupAdd);
 }
 
-function closeZoomPopup(){
+function closeZoomPopup() {
   closePopup(popupZoom);
 }
 
-function openZoomPopup(){
+function openZoomPopup() {
   openPopup(popupZoom);
 }
 
 
-function handleProfileFormSubmit (evt) {
-    evt.preventDefault(); 
-    nameOutput.textContent = nameInput.value;
-    jobOutput.textContent = jobInput.value;
-    closeEditPopup()
+function handleProfileFormSubmit(evt) {
+  evt.preventDefault();
+  nameOutput.textContent = nameInput.value;
+  jobOutput.textContent = jobInput.value;
+  closeEditPopup()
 }
 
-function handleAddFormSubmit(evt){
-  evt.preventDefault(); 
+function handleAddFormSubmit(evt) {
+  evt.preventDefault();
   const cardName = nameInputCard.value;
   const cardLink = linkInputCard.value;
   renderCard(cardName, cardLink)
@@ -102,7 +102,7 @@ function handleAddFormSubmit(evt){
   closeAddPopup()
 }
 
-function createNewCard(name,link){
+function createNewCard(name, link) {
   const cardClone = cardElement.cloneNode(true);
   const cardPic = cardClone.querySelector(".elements__image");
   const cardText = cardClone.querySelector(".elements__text");
@@ -111,11 +111,11 @@ function createNewCard(name,link){
 
   deleteBtn.addEventListener("click", () => cardClone.remove());
   likeBtn.addEventListener("click", () => likeBtn.classList.toggle("elements__likebut_active"));
-  cardPic.addEventListener("click", (evt) =>{
-      openZoomPopup();
-      zoomPic.src = evt.target.src;
-      zoomPic.alt = evt.target.alt;
-      zoomText.textContent = evt.target.alt;
+  cardPic.addEventListener("click", (evt) => {
+    openZoomPopup();
+    zoomPic.src = evt.target.src;
+    zoomPic.alt = evt.target.alt;
+    zoomText.textContent = evt.target.alt;
   });
 
 
@@ -126,8 +126,8 @@ function createNewCard(name,link){
   return cardClone;
 }
 
-function renderCard(name,link){
-  const newCard = createNewCard(name,link);
+function renderCard(name, link) {
+  const newCard = createNewCard(name, link);
   cardsContainer.prepend(newCard);
 }
 
@@ -142,5 +142,5 @@ cardAddExit.addEventListener('click', closeAddPopup);
 zoomExitBtn.addEventListener('click', closeZoomPopup);
 
 
-editFormElement.addEventListener('submit', handleProfileFormSubmit); 
+editFormElement.addEventListener('submit', handleProfileFormSubmit);
 addFormElement.addEventListener("submit", handleAddFormSubmit);
