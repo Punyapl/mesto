@@ -13,6 +13,7 @@ const profileSaveBtn = document.querySelector('.popup__savebut_svbtn');
 const popupEdit = document.querySelector('.popup-edit');
 const popupAdd = document.querySelector('.popup-add');
 const popupZoom = document.querySelector('.popup-zoom');
+const popups = Array.from(document.querySelectorAll(".popup"));
 
 const profileEditExit = document.querySelector(".popup__closebtn-edit");
 const profileEditBtn = document.querySelector(".profile__edit");
@@ -55,10 +56,28 @@ const initialCards = [
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupEscape);
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupEscape);
+}
+
+
+function closePopupEscape(evt) {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  }
+}
+
+function closePopupOverlayClickListener(popup) {
+  popup.addEventListener("click", (event) => {
+    if (event.target === popup) {
+      closePopup(popup);
+    }
+  });
 }
 
 function closeEditPopup() {
@@ -144,3 +163,7 @@ zoomExitBtn.addEventListener('click', closeZoomPopup);
 
 editFormElement.addEventListener('submit', handleProfileFormSubmit);
 addFormElement.addEventListener("submit", handleAddFormSubmit);
+
+popups.forEach((popup) => {
+  closePopupOverlayClickListener(popup);
+});
