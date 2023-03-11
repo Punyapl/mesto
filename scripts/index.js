@@ -72,8 +72,8 @@ function closePopupEscape(evt) {
   }
 }
 
-function closePopupOverlayClickListener(popup) {
-  popup.addEventListener("click", (event) => {
+function handleOverlayClickListener(popup) {
+  popup.addEventListener("mousedown", (event) => {
     if (event.target === popup) {
       closePopup(popup);
     }
@@ -112,13 +112,20 @@ function handleProfileFormSubmit(evt) {
   closeEditPopup()
 }
 
+function toggleSubmitButton() {
+  if (nameInputCard.value.length === 0 || linkInputCard.value.length === 0) {
+    profileSaveBtn.disabled = true;
+    profileSaveBtn.classList.add("popup__savebut_disabled");
+  }
+}
+
 function handleAddFormSubmit(evt) {
   evt.preventDefault();
   const cardName = nameInputCard.value;
   const cardLink = linkInputCard.value;
-  renderCard(cardName, cardLink)
-  evt.target.reset();
-  closeAddPopup()
+  renderCard(cardName, cardLink);
+  toggleSubmitButton();
+  closeAddPopup();
 }
 
 function createNewCard(name, link) {
@@ -165,5 +172,5 @@ editFormElement.addEventListener('submit', handleProfileFormSubmit);
 addFormElement.addEventListener("submit", handleAddFormSubmit);
 
 popups.forEach((popup) => {
-  closePopupOverlayClickListener(popup);
+  handleOverlayClickListener(popup);
 });

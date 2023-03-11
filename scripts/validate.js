@@ -19,15 +19,23 @@ function checkValidity(input, settings) {
     }
 }
 
+const hasInvalidInput = (inputList) =>{
+    return inputList.some((inputElement) => {
+      return !inputElement.validity.valid;
+    });
+}
+
+const toggleButtonState = (inputList, buttonElement, settings) =>{
+    if (hasInvalidInput(inputList)) {
+    buttonElement.classList.add(settings.inactiveButtonClass);
+  } else {
+    buttonElement.classList.remove(settings.inactiveButtonClass);
+  }
+}
+
 function formInputHandle(evt, inputList, submitButton, settings) {
     checkValidity(evt.target, settings);
-    if (inputList.some(input => !input.validity.valid)) {
-        submitButton.classList.add(settings.inactiveButtonClass);
-        submitButton.disabled = true;
-    } else {
-        submitButton.classList.remove(settings.inactiveButtonClass);
-        submitButton.disabled = false;
-    }
+    toggleButtonState(inputList, submitButton, settings);
 }
 
 function enableValidation(settings) {
