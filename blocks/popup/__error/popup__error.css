@@ -19,8 +19,9 @@
         top: 26px;
         left: 22px;
     }
+
     .popup__error:nth-of-type(2) {
         top: 81px;
         left: 22px;
-    }    
+    }
 }

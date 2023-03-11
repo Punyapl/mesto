@@ -4,13 +4,13 @@ function showError(input, settings) {
     inputError.textContent = input.validationMessage;
     inputError.classList.add(settings.errorClass);
 }
-  
+
 function hideError(input, settings) {
     const inputError = document.querySelector(`.${input.id}-error`);
     input.classList.remove(settings.inputErrorClass);
     inputError.classList.remove(settings.errorClass);
 }
-  
+
 function checkValidity(input, settings) {
     if (input.validity.valid) {
         hideError(input, settings);
@@ -18,7 +18,7 @@ function checkValidity(input, settings) {
         showError(input, settings);
     }
 }
-  
+
 function formInputHandle(evt, inputList, submitButton, settings) {
     checkValidity(evt.target, settings);
     if (inputList.some(input => !input.validity.valid)) {
