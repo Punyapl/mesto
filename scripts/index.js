@@ -9,7 +9,7 @@ const linkInputCard = document.querySelector('.popup__input_card-link');
 const zoomPic = document.querySelector('.popup-zoom__img');
 const zoomText = document.querySelector('.popup-zoom__title')
 
-const profileSaveBtn = document.querySelector('.popup__savebut_svbtn');
+const addSaveBtn = document.querySelector('.add-svbtn');
 const popupEdit = document.querySelector('.popup-edit');
 const popupAdd = document.querySelector('.popup-add');
 const popupZoom = document.querySelector('.popup-zoom');
@@ -72,7 +72,7 @@ function closePopupEscape(evt) {
   }
 }
 
-function handleOverlayClickListener(popup) {
+function handleOverlayClick(popup) {
   popup.addEventListener("mousedown", (event) => {
     if (event.target === popup) {
       closePopup(popup);
@@ -114,8 +114,8 @@ function handleProfileFormSubmit(evt) {
 
 function toggleSubmitButton() {
   if (nameInputCard.value.length === 0 || linkInputCard.value.length === 0) {
-    profileSaveBtn.disabled = true;
-    profileSaveBtn.classList.add("popup__savebut_disabled");
+    addSaveBtn.disabled = true;
+    addSaveBtn.classList.add("popup__savebut_disabled");
   }
 }
 
@@ -124,6 +124,7 @@ function handleAddFormSubmit(evt) {
   const cardName = nameInputCard.value;
   const cardLink = linkInputCard.value;
   renderCard(cardName, cardLink);
+  evt.target.reset();
   toggleSubmitButton();
   closeAddPopup();
 }
@@ -172,5 +173,5 @@ editFormElement.addEventListener('submit', handleProfileFormSubmit);
 addFormElement.addEventListener("submit", handleAddFormSubmit);
 
 popups.forEach((popup) => {
-  handleOverlayClickListener(popup);
+  handleOverlayClick(popup);
 });
