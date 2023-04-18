@@ -1,3 +1,6 @@
+import FormValidator from "./FormValidator";
+import Card from "./Card";
+
 const editFormElement = document.querySelector('.popup__form-edit');
 const addFormElement = document.querySelector('.popup__form-add');
 const nameInput = document.querySelector('.popup__input_name');
@@ -26,6 +29,15 @@ const zoomExitBtn = document.querySelector(".popup-zoom__close");
 const cardTemplate = document.querySelector("#card").content;
 const cardElement = cardTemplate.querySelector(".elements__element");
 const cardsContainer = document.querySelector('.elements');
+
+const validationList = ({
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__savebut",
+  inactiveButtonClass: "popup__savebut_disabled",
+  inputErrorClass: "popup__input_error",
+  errorClass: "popup__error_active"
+});
 
 const initialCards = [
   {
@@ -100,7 +112,10 @@ function closeZoomPopup() {
   closePopup(popupZoom);
 }
 
-function openZoomPopup() {
+function openZoomPopup(link,name) {
+  zoomPic.src = link;
+  zoomPic.alt = name;
+  zoomText.textContent = name;
   openPopup(popupZoom);
 }
 
@@ -123,44 +138,31 @@ function handleAddFormSubmit(evt) {
   evt.preventDefault();
   const cardName = nameInputCard.value;
   const cardLink = linkInputCard.value;
-  renderCard(cardName, cardLink);
+  addCard(cardName, cardLink);
   evt.target.reset();
   toggleSubmitButton();
   closeAddPopup();
 }
 
-function createNewCard(name, link) {
-  const cardClone = cardElement.cloneNode(true);
-  const cardPic = cardClone.querySelector(".elements__image");
-  const cardText = cardClone.querySelector(".elements__text");
-  const deleteBtn = cardClone.querySelector(".elements__dlt-btn");
-  const likeBtn = cardClone.querySelector(".elements__likebut");
-
-  deleteBtn.addEventListener("click", () => cardClone.remove());
-  likeBtn.addEventListener("click", () => likeBtn.classList.toggle("elements__likebut_active"));
-  cardPic.addEventListener("click", (evt) => {
-    openZoomPopup();
-    zoomPic.src = evt.target.src;
-    zoomPic.alt = evt.target.alt;
-    zoomText.textContent = evt.target.alt;
-  });
-
-
-  cardPic.src = link;
-  cardPic.alt = name;
-  cardText.textContent = name;
-
-  return cardClone;
+function createNewCard(data,template) {
+  const card = new Card(data,template);
+  return card.createCard();
 }
 
-function renderCard(name, link) {
-  const newCard = createNewCard(name, link);
+function renderCard(newCard) {
   cardsContainer.prepend(newCard);
 }
 
-initialCards.forEach((card) => {
-  renderCard(card.name, card.link);
+initialCards.forEach(data => {
+  const newCard = createNewCard(data, cardTemplate);
+  renderCard(newCard);
 });
+
+function addCard(name,link){
+  const data = {name: name, link: link};
+  const newCard = createNewCard(data, cardTemplate);
+  renderCard(newCard);
+}
 
 profileEditExit.addEventListener('click', closeEditPopup);
 profileEditBtn.addEventListener('click', openEditPopup);
@@ -168,6 +170,10 @@ cardAddBtn.addEventListener('click', openAddPopup);
 cardAddExit.addEventListener('click', closeAddPopup);
 zoomExitBtn.addEventListener('click', closeZoomPopup);
 
+const formValidatorEdit = new FormValidator(validationList, editFormElement);
+formValidatorEdit.enableValidation();
+const formValidatorAdd = new FormValidator(validationList,addFormElement);
+formValidatorAdd.enableValidation();
 
 editFormElement.addEventListener('submit', handleProfileFormSubmit);
 addFormElement.addEventListener("submit", handleAddFormSubmit);
@@ -175,3 +181,5 @@ addFormElement.addEventListener("submit", handleAddFormSubmit);
 popups.forEach((popup) => {
   handleOverlayClick(popup);
 });
+
+export {openZoomPopup};
