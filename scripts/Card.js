@@ -8,7 +8,7 @@ class Card {
     }
 
     _getTemplate () {
-        this._cardElement = this._template.cloneNode(true);
+        this._cardElement = document.querySelector(this._template).content.querySelector('.elements__element').cloneNode(true);
         return this._cardElement;
     }
 
@@ -32,9 +32,10 @@ class Card {
         this._likeBtn.classList.toggle("elements__likebut_active");
     }
 
-    _deleteCard(){
+    _deleteCard() {
         this._element.remove();
     }
+    
     createCard(){
         this._element = this._getTemplate();
         this._setEventListeners();

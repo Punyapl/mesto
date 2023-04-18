@@ -154,13 +154,13 @@ function renderCard(newCard) {
 }
 
 initialCards.forEach(data => {
-  const newCard = createNewCard(data, cardTemplate);
+  const newCard = createNewCard(data, '#card');
   renderCard(newCard);
 });
 
 function addCard(name,link){
   const data = {name: name, link: link};
-  const newCard = createNewCard(data, cardTemplate);
+  const newCard = createNewCard(data, '#card');
   renderCard(newCard);
 }
 
