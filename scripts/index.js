@@ -1,5 +1,5 @@
-import FormValidator from "./FormValidator";
-import Card from "./Card";
+import FormValidator from "./FormValidator.js";
+import Card from "./Card.js";
 
 const editFormElement = document.querySelector('.popup__form-edit');
 const addFormElement = document.querySelector('.popup__form-add');
@@ -172,7 +172,7 @@ zoomExitBtn.addEventListener('click', closeZoomPopup);
 
 const formValidatorEdit = new FormValidator(validationList, editFormElement);
 formValidatorEdit.enableValidation();
-const formValidatorAdd = new FormValidator(validationList,addFormElement);
+const formValidatorAdd = new FormValidator(validationList, addFormElement);
 formValidatorAdd.enableValidation();
 
 editFormElement.addEventListener('submit', handleProfileFormSubmit);

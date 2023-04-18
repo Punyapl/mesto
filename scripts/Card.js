@@ -1,4 +1,4 @@
-import { openZoomPopup } from "./index";
+import { openZoomPopup } from "./index.js";
 
 class Card {
     constructor(data, template){
@@ -8,7 +8,7 @@ class Card {
     }
 
     _getTemplate () {
-        this._cardElement = this.template.cloneNode(true);
+        this._cardElement = this._template.cloneNode(true);
         return this._cardElement;
     }
 
