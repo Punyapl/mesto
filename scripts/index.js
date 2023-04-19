@@ -97,6 +97,10 @@ function closeEditPopup() {
 }
 
 function openEditPopup() {
+  nameInput.value = nameOutput.textContent;
+  jobInput.value = jobOutput.textContent;
+  const formValidatorEditPopup = new FormValidator(validationList, editFormElement);
+  formValidatorEditPopup.resetValidation();
   openPopup(popupEdit);
 }
 
@@ -128,10 +132,7 @@ function handleProfileFormSubmit(evt) {
 }
 
 function toggleSubmitButton() {
-  if (nameInputCard.value.length === 0 || linkInputCard.value.length === 0) {
-    addSaveBtn.disabled = true;
-    addSaveBtn.classList.add("popup__savebut_disabled");
-  }
+  toggleButtonState();
 }
 
 function handleAddFormSubmit(evt) {
