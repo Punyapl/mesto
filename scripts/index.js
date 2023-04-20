@@ -73,8 +73,7 @@ function closeEditPopup() {
 function openEditPopup() {
   nameInput.value = nameOutput.textContent;
   jobInput.value = jobOutput.textContent;
-  const formValidatorEditPopup = new FormValidator(validationList, editFormElement);
-  formValidatorEditPopup.resetValidation();
+  formValidatorEdit.resetValidation(); 
   openPopup(popupEdit);
 }
 
@@ -83,6 +82,7 @@ function closeAddPopup() {
 }
 
 function openAddPopup() {
+  formValidatorAdd.toggleButtonState()
   openPopup(popupAdd);
 }
 
