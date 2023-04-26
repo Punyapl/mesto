@@ -26,9 +26,6 @@ class Card {
         this._deleteBtn.addEventListener("click", () => {
             this._deleteCard();
         });
-        // this._cardPic.addEventListener("click", () => {
-        //     openZoomPopup(this._link , this._name);
-        // });
     }
 
     _toggleLike(){
