@@ -23,7 +23,9 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
 
-
+const handleCardClick = () => {
+  popupImageOpen.open(title, link);
+};
 
 const cardsSection = new Section({
   items: initialCards,
@@ -38,9 +40,6 @@ const popupImageOpen = new PopupWithImage(popupZoom);
 popupImageOpen.setEventListeners();
 
 function createCardElement(title, link) {
-    const handleCardClick = () => {
-        popupImageOpen.open(title, link);
-    };
     const card = new Card(title, link, handleCardClick);
     const cardElement = card.createCard();
     return cardElement;
