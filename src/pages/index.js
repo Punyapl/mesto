@@ -1,5 +1,5 @@
 import './index.css';
-import FormValidator from "../components/FormValidator.js";
+import FormValidator from "../components/FormValidator";
 import Card from "../components/Card.js";
 import initialCards from "../components/initialCards.js";
 import PopupWithForm from "../components/PopupWithForm.js";
