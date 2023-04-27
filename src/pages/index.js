@@ -50,7 +50,7 @@ const validationList = ({
 const cardsSection = new Section({
   items: initialCards,
   renderer: (item) => {
-      const cardElement = createCardElement(item.name, item.link, '#card');
+      const cardElement = createCardElement(item.name, item.link);
       cardsSection.addItem(cardElement);
   }
 }, '.elements');
@@ -59,11 +59,11 @@ cardsSection.renderItems();
 const popupImageOpen = new PopupWithImage(popupZoom);
 popupImageOpen.setEventListeners();
 
-function createCardElement(title, link, template) {
+function createCardElement(title, link) {
     const handleCardClick = () => {
         popupImageOpen.open(title, link);
     };
-    const card = new Card(title, link, template, handleCardClick);
+    const card = new Card(title, link, handleCardClick);
     const cardElement = card.createCard();
     return cardElement;
 }
@@ -90,7 +90,7 @@ profileEditBtn.addEventListener('click', () => {
 });
 
 const popupAddCard = new PopupWithForm(popupAdd, (data) => {
-  const cardNewElement = createCardElement(data.name, data.link, '#card');
+  const cardNewElement = createCardElement(data.name, data.link);
   cardsSection.addItem(cardNewElement);
   popupAddCard.close();
 });
