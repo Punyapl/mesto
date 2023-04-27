@@ -1,51 +1,29 @@
 import './index.css';
+
+import {
+  initialCards,
+  validationList,
+  editFormElement,
+  addFormElement,
+  nameInput,
+  jobInput,
+  nameOutput,
+  jobOutput,
+  popupEdit,
+  popupAdd,
+  popupZoom,
+  profileEditBtn,
+  cardAddBtn
+} from '../components/constants';
+
 import FormValidator from "../components/FormValidator";
 import Card from "../components/Card.js";
-import initialCards from "../components/initialCards.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
 
 
-
-const editFormElement = document.querySelector('.popup__form-edit');
-const addFormElement = document.querySelector('.popup__form-add');
-const nameInput = document.querySelector('.popup__input_name');
-const jobInput = document.querySelector('.popup__input_job');
-const nameOutput = document.querySelector('.profile__name');
-const jobOutput = document.querySelector('.profile__caption');
-const nameInputCard = document.querySelector('.popup__input_card-name');
-const linkInputCard = document.querySelector('.popup__input_card-link');
-const zoomPic = document.querySelector('.popup-zoom__img');
-const zoomText = document.querySelector('.popup-zoom__title')
-
-const addSaveBtn = document.querySelector('.add-svbtn');
-const popupEdit = document.querySelector('.popup-edit');
-const popupAdd = document.querySelector('.popup-add');
-const popupZoom = document.querySelector('.popup-zoom');
-const popups = Array.from(document.querySelectorAll(".popup"));
-
-const profileEditExit = document.querySelector(".popup__closebtn-edit");
-const profileEditBtn = document.querySelector(".profile__edit");
-
-const cardAddBtn = document.querySelector(".profile__add");
-const cardAddExit = document.querySelector(".popup__closebtn-add");
-
-const zoomExitBtn = document.querySelector(".popup-zoom__close");
-
-const cardTemplate = document.querySelector("#card").content;
-// const cardElement = cardTemplate.querySelector(".elements__element");
-const cardsContainer = document.querySelector('.elements');
-
-const validationList = ({
-  formSelector: ".popup__form",
-  inputSelector: ".popup__input",
-  submitButtonSelector: ".popup__savebut",
-  inactiveButtonClass: "popup__savebut_disabled",
-  inputErrorClass: "popup__input_error",
-  errorClass: "popup__error_active"
-});
 
 const cardsSection = new Section({
   items: initialCards,
