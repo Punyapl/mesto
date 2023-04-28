@@ -23,8 +23,10 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
 
-const handleCardClick = () => {
-  popupImageOpen.open(title, link);
+const popupImageOpen = new PopupWithImage(popupZoom);
+popupImageOpen.setEventListeners();
+const handleCardClick = (item) => {
+  popupImageOpen.open(item.name, item.link);
 };
 
 const cardsSection = new Section({
@@ -36,8 +38,7 @@ const cardsSection = new Section({
 }, '.elements');
 cardsSection.renderItems();
 
-const popupImageOpen = new PopupWithImage(popupZoom);
-popupImageOpen.setEventListeners();
+
 
 function createCardElement(title, link) {
     const card = new Card(title, link, handleCardClick);
