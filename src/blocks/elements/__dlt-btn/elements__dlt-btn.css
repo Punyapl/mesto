@@ -1,7 +1,7 @@
 .elements__dlt-btn{
-    position: relative;
-    top: -315px;
-    right: -240px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
     cursor: pointer;
     background: transparent;
     border: none;
