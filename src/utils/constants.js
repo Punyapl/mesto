@@ -45,3 +45,4 @@ export const popupAdd = document.querySelector('.popup-add');
 export const popupZoom = document.querySelector('.popup-zoom');
 export const profileEditBtn = document.querySelector(".profile__edit");
 export const cardAddBtn = document.querySelector(".profile__add");
+export const avatarImg = document.querySelector(".profile__avatar");

@@ -1,7 +1,9 @@
 export default class UserInfo {
-    constructor(nameSection, jobSection) {
+    constructor(nameSection, jobSection, avatarSection) {
         this._nameSection = nameSection;
         this._jobSection = jobSection;
+        this._avatarSection = avatarSection;
+        this._avatarSection.alt = "Аватар"
     }
 
     getUserInfo() {
@@ -11,8 +13,12 @@ export default class UserInfo {
         };
     }
 
-    setUserInfo({ name, job }) {
+    setUserInfo( name, job ) {
         this._nameSection.textContent = name;
         this._jobSection.textContent = job;
+    }
+
+    setAvatar(avatarSection){
+        this._avatarSection.src = avatarSection;
     }
 }
