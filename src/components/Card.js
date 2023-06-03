@@ -1,14 +1,15 @@
 class Card {
-    constructor(data, owner, { handleCardClick, handleAddLike, handleRemoveLike }) {
+    constructor(data, owner, { handleCardClick, handleAddLike, handleRemoveLike, handleDeleteCard }) {
         this._name = data.name;
         this._link = data.link;
         this._likes = data.likes;
         this._isOwner = owner;
-
+        this._id = data._id;
         this._handleCardClick = handleCardClick;
-        //this._handleRemoveCard = handleRemoveCard;
+        this._handleDeleteCard = handleDeleteCard;
         this._handleAddLike = handleAddLike;
         this._handleRemoveLike = handleRemoveLike;
+        this._remove = this._remove.bind(this);
     }
 
     _getTemplate() {
@@ -31,9 +32,9 @@ class Card {
             else
                 this._handleAddLike();
         });
-        this._deleteBtn.addEventListener("click", () => {
-            this._deleteCard();
-        });
+        // this._deleteBtn.addEventListener("click", () => {
+        //     this._deleteCard();
+        // });
     }
 
     _toggleLike() {
@@ -54,6 +55,20 @@ class Card {
         this._element.remove();
     }
 
+    _remove() {
+        this._handleDeleteCard(this._id);
+    }
+
+    _renderTrashcanIcon() {
+        if (this._isOwner) {
+          this._deleteButton = this._element.querySelector(".elements__dlt-btn");
+          this._deleteButton.classList.add("elements__dlt-btn_active");
+          this._deleteButton.addEventListener("click", () => {
+            this._handleDeleteCard(this._id);
+          });
+        }
+      }
+
     createCard() {
         this._element = this._getTemplate();
         this._setEventListeners();
@@ -61,7 +76,7 @@ class Card {
         this._cardPic.src = this._link;
         this._cardPic.alt = this._name;
         this.updateCounterLikes(this._likes.length);
-
+        this._renderTrashcanIcon();
 
         return this._element;
     }

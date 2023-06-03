@@ -26,6 +26,7 @@ import {
   popupAdd,
   popupZoom,
   popupAvatar,
+  popupDelete,
   profileEditBtn,
   cardAddBtn,
   avatarBtn
@@ -36,6 +37,7 @@ import FormValidator from "../components/FormValidator.js";
 import Card from "../components/Card.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
+import PopupDelete from "../components/PopupDelete.js"
 import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
 
@@ -48,9 +50,8 @@ const apiConfig = {
 };
 const api = new Api(apiConfig);
 
-
-
-
+const popupConfirmDelete = new PopupDelete(popupDelete);
+popupConfirmDelete.setEventListeners();
 
 const popupImageOpen = new PopupWithImage(popupZoom);
 popupImageOpen.setEventListeners();
@@ -62,10 +63,12 @@ const isOwner = (idCard) => {
   return idCard.owner._id === userInfo.getUserInfo().id ? true : false;
 };
 
+console.log(isOwner)
+
 function createCardElement(cardData, owner) {
   const card = new Card(cardData, owner, {
     handleCardClick,
-    handleAddLike: () =>{
+    handleAddLike: () => {
       api
         .setLike(cardData._id)
         .then((cardData) =>{
@@ -86,6 +89,21 @@ function createCardElement(cardData, owner) {
         .catch((error) => {
           console.log(error);
         });
+    },
+    handleDeleteCard: (cardData) => {
+      popupConfirmDelete.open({
+        handleSubmit: () => {
+          api
+            .deleteCard(cardData)
+            .then(() => {
+              card._deleteCard();
+              popupConfirmDelete.close();
+            })
+            .catch((error) => {
+              console.log(error);
+            })
+        }
+      });
     }
   });
   const cardElement = card.createCard();
@@ -94,7 +112,8 @@ function createCardElement(cardData, owner) {
 
 const cardsSection = new Section({
   renderer: (item) => {
-      const cardElement = createCardElement(item, isOwner);
+    const _isOwner = isOwner(item);
+      const cardElement = createCardElement(item, _isOwner);
       cardsSection.addItem(cardElement);
   }
 }, '.elements');
@@ -117,7 +136,7 @@ Promise.all([api.getUserInfo(), api.getCardList()]) //подгрузка инф�
     console.error(error);
   });
 
-const popupEditForm = new PopupWithForm(popupEdit, (editData) => {
+  const popupEditForm = new PopupWithForm(popupEdit, (editData) => {
   const { name, job } = editData;
   // userInfo.setUserInfo( name, job );
   api
@@ -133,6 +152,7 @@ const popupEditForm = new PopupWithForm(popupEdit, (editData) => {
 
 });
 popupEditForm.setEventListeners();
+popupConfirmDelete.setEventListeners();
 
 profileEditBtn.addEventListener('click', () => {
   const { name, job } = userInfo.getUserInfo();

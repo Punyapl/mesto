@@ -44,6 +44,7 @@ export const popupEdit = document.querySelector('.popup-edit');
 export const popupAdd = document.querySelector('.popup-add');
 export const popupZoom = document.querySelector('.popup-zoom');
 export const popupAvatar = document.querySelector('.popup-avatar');
+export const popupDelete = document.querySelector('.popup-delete')
 export const profileEditBtn = document.querySelector(".profile__edit");
 export const cardAddBtn = document.querySelector(".profile__add");
 export const avatarImg = document.querySelector(".profile__avatar");

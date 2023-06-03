@@ -28,6 +28,7 @@
 @import url(../blocks/elements/__likebut/elements__likebut.css);
 @import url(../blocks/elements/__likebut/_active/elements__likebut_active.css);
 @import url(../blocks/elements/__dlt-btn/elements__dlt-btn.css);
+@import url(../blocks/elements/__dlt-btn/_active/elements__dlt-btn_active.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__text/footer__text.css);
 @import url(../blocks/popup/popup.css);

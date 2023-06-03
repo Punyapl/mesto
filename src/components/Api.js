@@ -107,4 +107,16 @@ export default class Api {
       );
     });
   }
+
+  deleteCard(cardId) {
+    return fetch(`${this.baseUrl}/cards/${cardId}`, {
+      headers: this.headers,
+      method: "DELETE",
+    }).then((response) => {
+      return this._handleResponse(
+        response,
+        "Данные о карточке попользователе не были успешно удалены на сервере"
+      );
+    });
+  }
 }
