@@ -136,9 +136,9 @@ Promise.all([api.getUserInfo(), api.getCardList()]) //подгрузка инф�
     console.error(error);
   });
 
-  const popupEditForm = new PopupWithForm(popupEdit, (editData) => {
+const popupEditForm = new PopupWithForm(popupEdit, (editData) => {
   const { name, job } = editData;
-  // userInfo.setUserInfo( name, job );
+  popupEditForm.renderLoading("Сохранение...");
   api
     .updateUserInfo(name, job)
     .then((userData) => {
@@ -148,8 +148,9 @@ Promise.all([api.getUserInfo(), api.getCardList()]) //подгрузка инф�
     .catch((error) => {
       console.log(error.message);
     })
-  
-
+    .finally(() => {
+      popupEditForm.renderLoading("Сохранено");
+    })
 });
 popupEditForm.setEventListeners();
 popupConfirmDelete.setEventListeners();
@@ -162,6 +163,7 @@ profileEditBtn.addEventListener('click', () => {
 });
 
 const popupAddCard = new PopupWithForm(popupAdd, (data) => {
+  popupAddCard.renderLoading("Сохранение...");
   api
     .sentCard(data)
     .then((cardData) =>{
@@ -171,6 +173,9 @@ const popupAddCard = new PopupWithForm(popupAdd, (data) => {
     })
     .catch((error)=>{
       console.error(error)
+    })
+    .finally(() => {
+      popupAddCard.renderLoading("Сохранить");
     })
 });
 popupAddCard.setEventListeners();
@@ -183,7 +188,8 @@ cardAddBtn.addEventListener('click', () => {
 
 
 const popupAvatarForm = new PopupWithForm(popupAvatar, (data)=>{
-  console.log(data.link);
+  // console.log(data.link);
+  popupAvatarForm.renderLoading("Сохранение...");
   api
     .updateAvatar(data.link)
     .then((userData) => {
@@ -193,6 +199,9 @@ const popupAvatarForm = new PopupWithForm(popupAvatar, (data)=>{
     })
     .catch((error)=>{
       console.error(error)
+    })
+    .finally(() => {
+      popupAvatarForm.renderLoading("Сохранить");
     })
 })
 popupAvatarForm.setEventListeners();
