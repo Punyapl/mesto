@@ -52,4 +52,20 @@ export default class Api {
       );
     });
   }
+
+  sentCard({ name, link }) {
+    return fetch(`${this.baseUrl}/cards`, {
+      headers: this.headers,
+      method: "POST",
+      body: JSON.stringify({
+        name: name,
+        link: link,
+      }),
+    }).then((response) => {
+      return this._handleResponse(
+        response,
+        "Данные добавленной карты не были успешно получены сервером"
+      );
+    });
+  }
 }

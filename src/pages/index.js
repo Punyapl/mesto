@@ -113,9 +113,16 @@ profileEditBtn.addEventListener('click', () => {
 });
 
 const popupAddCard = new PopupWithForm(popupAdd, (data) => {
-  const cardNewElement = createCardElement(data.name, data.link);
-  cardsSection.addItem(cardNewElement);
-  popupAddCard.close();
+  api
+    .sentCard(data)
+    .then((cardData) =>{
+      const cardNewElement = createCardElement(cardData.name, cardData.link);
+      cardsSection.addItem(cardNewElement);
+      popupAddCard.close();
+    })
+    .catch((error)=>{
+      console.error(error)
+    })
 });
 popupAddCard.setEventListeners();
 
