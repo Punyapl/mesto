@@ -112,8 +112,8 @@ function createCardElement(cardData, owner) {
 const cardsSection = new Section({
   renderer: (item) => {
     const _isOwner = isOwner(item);
-      const cardElement = createCardElement(item, _isOwner);
-      cardsSection.addItem(cardElement);
+    const cardElement = createCardElement(item, _isOwner);
+    cardsSection.addItem(cardElement);
   }
 }, '.elements');
 
@@ -165,7 +165,7 @@ const popupAddCard = new PopupWithForm(popupAdd, (data) => {
   api
     .sentCard(data)
     .then((cardData) =>{
-      const cardNewElement = createCardElement(cardData, isOwner);
+      const cardNewElement = createCardElement(cardData, true);
       cardsSection.addItem(cardNewElement);
       popupAddCard.close();
     })
