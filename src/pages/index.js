@@ -82,7 +82,7 @@ Promise.all([api.getUserInfo(), api.getCardList()]) //подгрузка инф�
   .then(([infoData, cardsSectionData]) => {
     userInfo.setUserInfo( infoData.name, infoData.about );
     userInfo.setAvatar(infoData.avatar);
-    cardsSection.renderItems(cardsSectionData);
+    cardsSection.renderItems(cardsSectionData.reverse());
   })
   .catch((error) => {
     console.error(error);
