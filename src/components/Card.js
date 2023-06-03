@@ -32,9 +32,6 @@ class Card {
             else
                 this._handleAddLike();
         });
-        // this._deleteBtn.addEventListener("click", () => {
-        //     this._deleteCard();
-        // });
     }
 
     _toggleLike() {

@@ -13,7 +13,6 @@ fetch('https://mesto.nomoreparties.co/v1/cohort-66/users/me ', {
 import './index.css';
 
 import {
-  initialCards,
   validationList,
   editFormElement,
   addFormElement,
@@ -117,7 +116,6 @@ const cardsSection = new Section({
       cardsSection.addItem(cardElement);
   }
 }, '.elements');
-// cardsSection.renderItems(initialCards);
 
 const formValidatorEdit = new FormValidator(validationList, editFormElement);
 formValidatorEdit.enableValidation();
@@ -188,7 +186,6 @@ cardAddBtn.addEventListener('click', () => {
 
 
 const popupAvatarForm = new PopupWithForm(popupAvatar, (data)=>{
-  // console.log(data.link);
   popupAvatarForm.renderLoading("Сохранение...");
   api
     .updateAvatar(data.link)
