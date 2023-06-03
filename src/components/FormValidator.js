@@ -1,5 +1,5 @@
 class FormValidator {
-    constructor(config, form){
+    constructor(config, form) {
         this._form = form;
         this._inputSelector = config.inputSelector;
         this._submitButtonSelector = config.submitButtonSelector;
@@ -31,20 +31,20 @@ class FormValidator {
         }
     }
 
-    _hasInvalidInput = () =>{
+    _hasInvalidInput = () => {
         return this._inputArray.some((inputElement) => {
-          return !inputElement.validity.valid;
+            return !inputElement.validity.valid;
         });
     }
 
-    toggleButtonState = () =>{
+    toggleButtonState = () => {
         if (this._hasInvalidInput() || this._inputArray.length === 0) {
             this._formButton.classList.add(this._inactiveButtonClass);
-            this._formButton.disabled = true; 
-      } else {
-        this._formButton.classList.remove(this._inactiveButtonClass);
-        this._formButton.disabled = false; 
-      }
+            this._formButton.disabled = true;
+        } else {
+            this._formButton.classList.remove(this._inactiveButtonClass);
+            this._formButton.disabled = false;
+        }
     }
 
     _handleFormInput(evt, inputList, submitButton) {
@@ -52,9 +52,9 @@ class FormValidator {
         this.toggleButtonState(inputList, submitButton);
     }
 
-    _setEventListeners(){
+    _setEventListeners() {
         this.toggleButtonState();
-        this._inputArray.forEach((inputElement)=>{
+        this._inputArray.forEach((inputElement) => {
             inputElement.addEventListener('input', () => {
                 this._checkValidity(inputElement);
                 this.toggleButtonState();
@@ -63,7 +63,7 @@ class FormValidator {
     }
 
     enableValidation() {
-        this._form.addEventListener('submit', (evt)=> {
+        this._form.addEventListener('submit', (evt) => {
             evt.preventDefault();
         });
         this._setEventListeners();

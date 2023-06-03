@@ -70,7 +70,7 @@ function createCardElement(cardData, owner) {
     handleAddLike: () => {
       api
         .setLike(cardData._id)
-        .then((cardData) =>{
+        .then((cardData) => {
           card._toggleLike();
           card.updateCounterLikes(cardData.likes.length);
         })
@@ -126,7 +126,7 @@ const userInfo = new UserInfo(nameOutput, jobOutput, avatarImg);
 
 Promise.all([api.getUserInfo(), api.getCardList()]) //подгрузка инфы с сервера
   .then(([infoData, cardsSectionData]) => {
-    userInfo.setUserInfo( infoData.name, infoData.about );
+    userInfo.setUserInfo(infoData.name, infoData.about);
     userInfo.setAvatar(infoData.avatar);
     cardsSection.renderItems(cardsSectionData.reverse());
   })
@@ -140,7 +140,7 @@ const popupEditForm = new PopupWithForm(popupEdit, (editData) => {
   api
     .updateUserInfo(name, job)
     .then((userData) => {
-      userInfo.setUserInfo(userData.name,userData.about);
+      userInfo.setUserInfo(userData.name, userData.about);
       popupEditForm.close();
     })
     .catch((error) => {
@@ -164,12 +164,12 @@ const popupAddCard = new PopupWithForm(popupAdd, (data) => {
   popupAddCard.renderLoading("Сохранение...");
   api
     .sentCard(data)
-    .then((cardData) =>{
+    .then((cardData) => {
       const cardNewElement = createCardElement(cardData, true);
       cardsSection.addItem(cardNewElement);
       popupAddCard.close();
     })
-    .catch((error)=>{
+    .catch((error) => {
       console.error(error)
     })
     .finally(() => {
@@ -185,7 +185,7 @@ cardAddBtn.addEventListener('click', () => {
 
 
 
-const popupAvatarForm = new PopupWithForm(popupAvatar, (data)=>{
+const popupAvatarForm = new PopupWithForm(popupAvatar, (data) => {
   popupAvatarForm.renderLoading("Сохранение...");
   api
     .updateAvatar(data.link)
@@ -194,7 +194,7 @@ const popupAvatarForm = new PopupWithForm(popupAvatar, (data)=>{
       console.log(userData.avatar);
       popupAvatarForm.close();
     })
-    .catch((error)=>{
+    .catch((error) => {
       console.error(error)
     })
     .finally(() => {

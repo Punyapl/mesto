@@ -1,4 +1,4 @@
-.popup__savebut{
+.popup__savebut {
     border: none;
     cursor: pointer;
     padding: 0;
@@ -24,10 +24,10 @@
 
 .popup__savebut:hover {
     background-color: rgba(0, 0, 0, 0.8);
-  }
+}
 
-@media screen and (max-width:530px){
-    .popup__savebut{
+@media screen and (max-width:530px) {
+    .popup__savebut {
         margin-top: 15px;
         margin-left: 22px;
         padding-left: 82px;

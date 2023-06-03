@@ -58,13 +58,13 @@ class Card {
 
     _renderTrashcanIcon() {
         if (this._isOwner) {
-          this._deleteButton = this._element.querySelector(".elements__dlt-btn");
-          this._deleteButton.classList.add("elements__dlt-btn_active");
-          this._deleteButton.addEventListener("click", () => {
-            this._handleDeleteCard(this._id);
-          });
+            this._deleteButton = this._element.querySelector(".elements__dlt-btn");
+            this._deleteButton.classList.add("elements__dlt-btn_active");
+            this._deleteButton.addEventListener("click", () => {
+                this._handleDeleteCard(this._id);
+            });
         }
-      }
+    }
 
     createCard() {
         this._element = this._getTemplate();

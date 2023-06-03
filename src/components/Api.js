@@ -1,28 +1,28 @@
 export default class Api {
-  constructor(config){
-      this.baseUrl = config.baseUrl;
-      this.headers = config.headers;
+  constructor(config) {
+    this.baseUrl = config.baseUrl;
+    this.headers = config.headers;
   }
 
   _handleResponse(response, errorMessage) {
-      if (response.ok) {
-        return response.json();
-      }
-      return Promise.reject(
-        new Error(`Ошибка: ${response.status}. Текст ошибки: ${errorMessage}`)
-      );
+    if (response.ok) {
+      return response.json();
+    }
+    return Promise.reject(
+      new Error(`Ошибка: ${response.status}. Текст ошибки: ${errorMessage}`)
+    );
   }
 
   getUserInfo() {
-      return fetch(`${this.baseUrl}/users/me`, {
-        headers: this.headers,
-        method: "GET",
-      }).then((response) => {
-        return this._handleResponse(
-          response,
-          "Данные о пользователе не были успешно получены"
-        );
-      });
+    return fetch(`${this.baseUrl}/users/me`, {
+      headers: this.headers,
+      method: "GET",
+    }).then((response) => {
+      return this._handleResponse(
+        response,
+        "Данные о пользователе не были успешно получены"
+      );
+    });
   }
 
   updateUserInfo(name, about) {
@@ -39,7 +39,7 @@ export default class Api {
         "Данные о пользователе не были успешно обновлены на сервере"
       );
     });
-  } 
+  }
 
   getCardList() {
     return fetch(`${this.baseUrl}/cards`, {
