@@ -1,4 +1,4 @@
-fetch('https://nomoreparties.co/v1/cohort-66/users/me ', {
+fetch('https://nomoreparties.co/v1/cohort-66/cards ', {
   headers: {
     authorization: '1bbba12c-60b2-4199-b4df-a4cf1b3d6619'
   }
@@ -56,22 +56,20 @@ const handleCardClick = (item) => {
   popupImageOpen.open(item.name, item.link);
 };
 
+
+function createCardElement(title, link) {
+  const card = new Card(title, link, handleCardClick);
+  const cardElement = card.createCard();
+  return cardElement;
+}
+
 const cardsSection = new Section({
-  items: initialCards,
   renderer: (item) => {
       const cardElement = createCardElement(item.name, item.link);
       cardsSection.addItem(cardElement);
   }
 }, '.elements');
-cardsSection.renderItems();
-
-
-
-function createCardElement(title, link) {
-    const card = new Card(title, link, handleCardClick);
-    const cardElement = card.createCard();
-    return cardElement;
-}
+// cardsSection.renderItems(initialCards);
 
 const formValidatorEdit = new FormValidator(validationList, editFormElement);
 formValidatorEdit.enableValidation();
@@ -80,13 +78,14 @@ formValidatorAdd.enableValidation();
 
 const userInfo = new UserInfo(nameOutput, jobOutput, avatarImg);
 
-Promise.all([api.getUserInfo()]) //подгрузка инфы с сервера
-  .then(([infoData]) => {
+Promise.all([api.getUserInfo(), api.getCardList()]) //подгрузка инфы с сервера
+  .then(([infoData, cardsSectionData]) => {
     userInfo.setUserInfo( infoData.name, infoData.about );
-    userInfo.setAvatar(infoData.avatar)
+    userInfo.setAvatar(infoData.avatar);
+    cardsSection.renderItems(cardsSectionData);
   })
   .catch((error) => {
-    console.log(error.message);
+    console.error(error);
   });
 
 const popupEditForm = new PopupWithForm(popupEdit, (editData) => {

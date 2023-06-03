@@ -40,4 +40,16 @@ export default class Api {
       );
     });
   } 
+
+  getCardList() {
+    return fetch(`${this.baseUrl}/cards`, {
+      headers: this.headers,
+      method: "GET",
+    }).then((response) => {
+      return this._handleResponse(
+        response,
+        "Данные о списке карт не были успешно получены"
+      );
+    });
+  }
 }
