@@ -68,4 +68,28 @@ export default class Api {
       );
     });
   }
+
+  setLike(cardId) {
+    return fetch(`${this.baseUrl}/cards/${cardId}/likes`, {
+      headers: this.headers,
+      method: "PUT",
+    }).then((response) => {
+      return this._handleResponse(
+        response,
+        "Данные о добавлении лайка карточке от попользователе не были успешно обновлены на сервере"
+      );
+    });
+  }
+
+  deleteLike(cardId) {
+    return fetch(`${this.baseUrl}/cards/${cardId}/likes`, {
+      headers: this.headers,
+      method: "DELETE",
+    }).then((response) => {
+      return this._handleResponse(
+        response,
+        "Данные об удалении лайка карточке от попользователе не были успешно обновлены на сервере"
+      );
+    });
+  }
 }

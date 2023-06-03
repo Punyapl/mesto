@@ -56,16 +56,43 @@ const handleCardClick = (item) => {
   popupImageOpen.open(item.name, item.link);
 };
 
+const isOwner = (idCard) => {
+  return idCard.owner._id === userInfo.getUserInfo().id ? true : false;
+};
 
-function createCardElement(title, link) {
-  const card = new Card(title, link, handleCardClick);
+function createCardElement(cardData, owner) {
+  const card = new Card(cardData, owner, {
+    handleCardClick,
+    handleAddLike: () =>{
+      api
+        .setLike(cardData._id)
+        .then((cardData) =>{
+          card._toggleLike();
+          card.updateCounterLikes(cardData.likes.length);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+    handleRemoveLike: () => {
+      api
+        .deleteLike(cardData._id)
+        .then((cardData) => {
+          card._toggleLike();
+          card.updateCounterLikes(cardData.likes.length);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  });
   const cardElement = card.createCard();
   return cardElement;
 }
 
 const cardsSection = new Section({
   renderer: (item) => {
-      const cardElement = createCardElement(item.name, item.link);
+      const cardElement = createCardElement(item, isOwner);
       cardsSection.addItem(cardElement);
   }
 }, '.elements');
@@ -116,7 +143,7 @@ const popupAddCard = new PopupWithForm(popupAdd, (data) => {
   api
     .sentCard(data)
     .then((cardData) =>{
-      const cardNewElement = createCardElement(cardData.name, cardData.link);
+      const cardNewElement = createCardElement(cardData, isOwner);
       cardsSection.addItem(cardNewElement);
       popupAddCard.close();
     })

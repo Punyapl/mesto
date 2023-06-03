@@ -1,7 +1,7 @@
 .elements__likebut{
     cursor: pointer;
     background: transparent;
-    position: absolute;
+    /* position: absolute; */
     right: 20px;
     border: none;
     height: 19px;
