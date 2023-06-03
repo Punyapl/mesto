@@ -92,4 +92,19 @@ export default class Api {
       );
     });
   }
+
+  updateAvatar(avatar) {
+    return fetch(`${this.baseUrl}/users/me/avatar`, {
+      headers: this.headers,
+      method: "PATCH",
+      body: JSON.stringify({
+        avatar: avatar
+      }),
+    }).then((response) => {
+      return this._handleResponse(
+        response,
+        "Фото аватара не было успешно обновлено на сервере"
+      );
+    });
+  }
 }

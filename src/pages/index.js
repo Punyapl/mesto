@@ -1,4 +1,4 @@
-fetch('https://nomoreparties.co/v1/cohort-66/cards ', {
+fetch('https://mesto.nomoreparties.co/v1/cohort-66/users/me ', {
   headers: {
     authorization: '1bbba12c-60b2-4199-b4df-a4cf1b3d6619'
   }
@@ -25,8 +25,10 @@ import {
   popupEdit,
   popupAdd,
   popupZoom,
+  popupAvatar,
   profileEditBtn,
-  cardAddBtn
+  cardAddBtn,
+  avatarBtn
 } from '../utils/constants.js';
 
 import Api from "../components/Api.js"; // api сайта
@@ -45,7 +47,7 @@ const apiConfig = {
   }
 };
 const api = new Api(apiConfig);
-// console.log(api.getUserInfo);
+
 
 
 
@@ -155,5 +157,27 @@ popupAddCard.setEventListeners();
 
 cardAddBtn.addEventListener('click', () => {
   popupAddCard.open();
+  formValidatorAdd.resetValidation();
+});
+
+
+
+const popupAvatarForm = new PopupWithForm(popupAvatar, (data)=>{
+  console.log(data.link);
+  api
+    .updateAvatar(data.link)
+    .then((userData) => {
+      userInfo.setAvatar(userData.avatar);
+      console.log(userData.avatar);
+      popupAvatarForm.close();
+    })
+    .catch((error)=>{
+      console.error(error)
+    })
+})
+popupAvatarForm.setEventListeners();
+
+avatarBtn.addEventListener('click', () => {
+  popupAvatarForm.open();
   formValidatorAdd.resetValidation();
 });

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <title>Mesto</title>
 </head>
 
@@ -16,19 +16,23 @@
         </header>
         <main class="content">
             <section class="profile">
-                <img src="<%=require('./images/profile__avatar.png')%>" alt="Аватар профиля" class="profile__avatar">
+                <div class="profile__avatarcon">
+                    <img src="<%=require('./images/profile__avatar.png')%>" alt="Аватар профиля"
+                        class="profile__avatar">
+                    <button class="profile__avatarbtn" type="button" aria-label="edit avatar"></button>
+                </div>
                 <div class="profile__block">
                     <div class="profile__info">
                         <div class="profile__naming">
                             <h1 class="profile__name profile__name_output">Жак-Ив Кусто</h1>
-                            <button class="profile__edit" type="button"><img src="<%=require('./images/profile__edit.svg')%>"
-                                    alt="Редактировать профиль" class="profile__editico"
-                                    aria-label="Редактирование профиля"></button>
+                            <button class="profile__edit" type="button"><img
+                                    src="<%=require('./images/profile__edit.svg')%>" alt="Редактировать профиль"
+                                    class="profile__editico" aria-label="Редактирование профиля"></button>
                         </div>
                         <h2 class="profile__caption profile__caption_output">Исследователь океана</h2>
                     </div>
-                    <button class="profile__add" type="button"><img src="<%=require('./images/profile__add.svg')%>" alt="Добавить"
-                            aria-label="Добавить карточку"></button>
+                    <button class="profile__add" type="button"><img src="<%=require('./images/profile__add.svg')%>"
+                            alt="Добавить" aria-label="Добавить карточку"></button>
                 </div>
             </section>
             <ul class="elements">
@@ -41,7 +45,7 @@
                                 <button class="elements__likebut" type="button" aria-label="Лайк"></button>
                                 <h4 class="elements__likecount"></h4>
                             </div>
-                            
+
                         </div>
                         <button class="elements__dlt-btn" type="button" aria-label="Удалить карточку"></button>
                     </li>
@@ -54,8 +58,8 @@
         <section class="popup popup-edit">
             <div class="popup__container">
                 <button class="popup__close popup__closebtn-edit" type="button"
-                    aria-label="Закрыть окно редактирования"><img src="<%=require('./images/popup__close.svg')%>" alt="Закрыть"
-                        class="popup__closepic"></button>
+                    aria-label="Закрыть окно редактирования"><img src="<%=require('./images/popup__close.svg')%>"
+                        alt="Закрыть" class="popup__closepic"></button>
                 <h2 class="popup__title">Редактировать профиль</h2>
                 <form class="popup__form popup__form-edit">
                     <input class="popup__input popup__input_name" type="text" value="Жак-Ив Кусто" name="name"
@@ -75,8 +79,8 @@
         <section class="popup popup-add">
             <div class="popup__container">
                 <button class="popup__close popup__closebtn-add" type="button"
-                    aria-label="Закрыть окно добавленеия карточки"><img src="<%=require('./images/popup__close.svg')%>" alt="Закрыть"
-                        class="popup__closepic"></button>
+                    aria-label="Закрыть окно добавленеия карточки"><img src="<%=require('./images/popup__close.svg')%>"
+                        alt="Закрыть" class="popup__closepic"></button>
                 <h2 class="popup__title">Новое место</h2>
                 <form class="popup__form popup__form-add">
                     <input class="popup__input popup__input_card-name" type="text" placeholder="Название" name="name"
@@ -86,6 +90,21 @@
                         id="link-input" required type="url">
                     <span class="popup__error link-input-error"></span>
                     <button class="popup__savebut add-svbtn" type="submit"
+                        aria-label="Сохранить изменения">Сохранить</button>
+                </form>
+            </div>
+        </section>
+        <section class="popup popup-avatar">
+            <div class="popup__container">
+                <button class="popup__close popup__closebtn-avatar" type="button"
+                    aria-label="Закрыть окно обновления аватара"><img src="<%=require('./images/popup__close.svg')%>"
+                        alt="Закрыть" class="popup__closepic"></button>
+                <h2 class="popup__title">Обновить аватар</h2>
+                <form class="popup__form popup__form-avatar">
+                    <input class="popup__input popup__input_avatar-link" placeholder="Ссылка на картинку" name="link"
+                        id="link-input" required type="url">
+                    <span class="popup__error link-input-error"></span>
+                    <button class="popup__savebut avatar-svbtn" type="submit"
                         aria-label="Сохранить изменения">Сохранить</button>
                 </form>
             </div>
@@ -101,7 +120,7 @@
             </div>
         </section>
     </div>
-    
+
 </body>
 
 </html>
