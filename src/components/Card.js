@@ -1,10 +1,13 @@
+import { data } from "autoprefixer";
+
 class Card {
-    constructor(data, owner, { handleCardClick, handleAddLike, handleRemoveLike, handleDeleteCard }) {
+    constructor(data, owner, ownerId, { handleCardClick, handleAddLike, handleRemoveLike, handleDeleteCard }) {
         this._name = data.name;
         this._link = data.link;
         this._likes = data.likes;
         this._isOwner = owner;
         this._id = data._id;
+        this._ownerId = ownerId;
         this._handleCardClick = handleCardClick;
         this._handleDeleteCard = handleDeleteCard;
         this._handleAddLike = handleAddLike;
@@ -38,13 +41,12 @@ class Card {
         this._likeBtn.classList.toggle("elements__likebut_active");
     }
 
-    _renderLikeIcon() {
-        this._likes.forEach(() => {
-            if (this._isOwner) {
-                this._element
-                    .querySelector(".elements__like")
-                    .classList.add("elements__likebut_active");
+    renderLikeIcon() {
+        this._likes.forEach((like) => {
+            if (like._id == this._ownerId) {
+                this._likeBtn.classList.add("elements__likebut_active");
             }
+                
         });
     }
 
@@ -72,8 +74,10 @@ class Card {
         this._element.querySelector(".elements__text").textContent = this._name;
         this._cardPic.src = this._link;
         this._cardPic.alt = this._name;
+        this.renderLikeIcon();
         this.updateCounterLikes(this._likes.length);
         this._renderTrashcanIcon();
+        
 
         return this._element;
     }

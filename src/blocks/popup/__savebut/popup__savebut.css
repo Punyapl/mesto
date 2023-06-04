@@ -30,9 +30,7 @@
     .popup__savebut {
         margin-top: 15px;
         margin-left: 22px;
-        padding-left: 82px;
-        padding-right: 82px;
-
+        min-width: 238px;
 
         font-size: 14px;
         line-height: 17px;

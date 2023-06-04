@@ -62,10 +62,8 @@ const isOwner = (idCard) => {
   return idCard.owner._id === userInfo.getUserInfo().id ? true : false;
 };
 
-console.log(isOwner)
-
-function createCardElement(cardData, owner) {
-  const card = new Card(cardData, owner, {
+function createCardElement(cardData, owner, ownerId) {
+  const card = new Card(cardData, owner, ownerId, {
     handleCardClick,
     handleAddLike: () => {
       api
@@ -112,8 +110,9 @@ function createCardElement(cardData, owner) {
 const cardsSection = new Section({
   renderer: (item) => {
     const _isOwner = isOwner(item);
-    const cardElement = createCardElement(item, _isOwner);
+    const cardElement = createCardElement(item, _isOwner,userInfo.getUserInfo().id);
     cardsSection.addItem(cardElement);
+    
   }
 }, '.elements');
 
@@ -124,15 +123,18 @@ formValidatorAdd.enableValidation();
 
 const userInfo = new UserInfo(nameOutput, jobOutput, avatarImg);
 
+
 Promise.all([api.getUserInfo(), api.getCardList()]) //подгрузка инфы с сервера
   .then(([infoData, cardsSectionData]) => {
     userInfo.setUserInfo(infoData.name, infoData.about);
     userInfo.setAvatar(infoData.avatar);
+    userInfo.setId(infoData._id);
     cardsSection.renderItems(cardsSectionData.reverse());
   })
   .catch((error) => {
     console.error(error);
   });
+
 
 const popupEditForm = new PopupWithForm(popupEdit, (editData) => {
   const { name, job } = editData;
@@ -147,7 +149,7 @@ const popupEditForm = new PopupWithForm(popupEdit, (editData) => {
       console.log(error.message);
     })
     .finally(() => {
-      popupEditForm.renderLoading("Сохранено");
+      popupEditForm.renderLoading("Сохранить");
     })
 });
 popupEditForm.setEventListeners();
@@ -165,7 +167,7 @@ const popupAddCard = new PopupWithForm(popupAdd, (data) => {
   api
     .sentCard(data)
     .then((cardData) => {
-      const cardNewElement = createCardElement(cardData, true);
+      const cardNewElement = createCardElement(cardData, true, userInfo.getUserInfo().id);
       cardsSection.addItem(cardNewElement);
       popupAddCard.close();
     })

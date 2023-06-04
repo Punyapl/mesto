@@ -3,13 +3,15 @@ export default class UserInfo {
         this._nameSection = nameSection;
         this._jobSection = jobSection;
         this._avatarSection = avatarSection;
-        this._avatarSection.alt = "Аватар"
+        this._avatarSection.alt = "Аватар";
+        this._id = null;
     }
 
     getUserInfo() {
         return {
             name: this._nameSection.textContent,
             job: this._jobSection.textContent,
+            id: this._id,
         };
     }
 
@@ -20,5 +22,9 @@ export default class UserInfo {
 
     setAvatar(avatar) {
         this._avatarSection.src = avatar;
+    }
+
+    setId(id){
+        this._id = id;
     }
 }
